@@ -104,6 +104,7 @@ OpenalSoundInterface::OpenalSoundInterface(float sampling_rate, int n_channels):
 
 	OSI_MAX_BUFFERS = buffers;
 
+	printf("Modified version with logging\n");
 	printf("OpenAL backend info:\n  Vendor: %s\n  Renderer: %s\n  Version: %s\n", alGetString(AL_VENDOR), alGetString(AL_RENDERER), alGetString(AL_VERSION));
 	printf("  Available sources: %d%s\n", OSI_MAX_SOURCES, (sources >= MAX_SOURCES) ? " or more" : "");
 	printf("  Available buffers: %d%s\n", OSI_MAX_BUFFERS, (buffers >= MAX_SOURCES) ? " or more" : "");
