@@ -34,7 +34,7 @@
 /*** defines for UDP *****/
 #define UDP_MSGLEN 1000
 #define UDP_CLIENT_TIMEUOT 1000000
-#define __UDP_CLIENT_VERBOSE__
+// #define __UDP_CLIENT_VERBOSE__
 /************************/
 
 #ifdef WIN32
@@ -74,6 +74,7 @@ int main(int argc, char *argv[])
 //    double noiseSTD;
 //    long seed;
     char trackName[1000];
+
     BaseDriver::tstage stage;
 
     tSockAddrIn serverAddress;
@@ -130,6 +131,8 @@ int main(int argc, char *argv[])
 //    	cout << "SEED: " << seed << endl;
 
     cout << "TRACKNAME: " << trackName << endl;
+    cout << "angle;current laptime;damage;distanced raced;fuel";
+    cout << "accel" << endl;
 
     if (stage == BaseDriver::WARMUP)
 		cout << "STAGE: WARMUP" << endl;
@@ -233,7 +236,7 @@ int main(int argc, char *argv[])
                 }
 
 #ifdef __UDP_CLIENT_VERBOSE__
-                cout << "Received: " << buf << endl;
+                // cout << "Received: " << buf << endl;
 #endif
 
                 if (strcmp(buf,"***shutdown***")==0)
@@ -259,7 +262,7 @@ int main(int argc, char *argv[])
             string action = d.drive(string(buf));
             memset(buf, 0x0, UDP_MSGLEN);
 			sprintf(buf,"%s",action.c_str());
-                cout << "Action: " << action << endl;
+                // cout << "Action: " << action << endl;
 		}
 		else
 			sprintf (buf, "(meta 1)");
@@ -365,4 +368,5 @@ void parse_args(int argc, char *argv[], char *hostName, unsigned int &serverPort
     		i++;		/* ignore bad args */
     	}
     }
+
 }
