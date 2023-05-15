@@ -61,7 +61,7 @@ typedef struct sockaddr_in tSockAddrIn;
 #define UDP_ID "SCR"
 #define UDP_DEFAULT_TIMEOUT 10000
 #define UDP_MSGLEN 1000
-#define __UDP_SERVER_VERBOSE__
+// #define __UDP_SERVER_VERBOSE__
 /************************/
 
 static int UDP_TIMEOUT = UDP_DEFAULT_TIMEOUT;
@@ -482,37 +482,6 @@ drive(int index, tCarElt *car, tSituation *s)
     }
 
     distRaced[index] += curDistRaced;
-
-    /**
-     * CSV Representation
-    */
-    string csvString = "angle,curLapTime,damage,distFromStart,distRaced,fuel,gear,lastLapTime,opponents,racePos,rpm,speedX,speedY,speedZ,track,trackPos,wheelSpinVel,z,focus";
-    csvString += SimpleParser::stringify("", angle);
-    csvString += SimpleParser::stringify(",", float(car->_curLapTime));
-
-    if (getDamageLimit())
-        csvString += SimpleParser::stringify(",", car->_dammage);
-    else
-        csvString += SimpleParser::stringify(",", car->_fakeDammage);
-
-    csvString += SimpleParser::stringify(",", car->race.distFromStartLine);
-    csvString += SimpleParser::stringify(",", distRaced[index]);
-    csvString += SimpleParser::stringify(",", car->_fuel);
-    csvString += SimpleParser::stringify(",", car->_gear);
-    csvString += SimpleParser::stringify(",", float(car->_lastLapTime));
-    csvString += SimpleParser::stringify(",", oppSensorOut, 36);
-    csvString += SimpleParser::stringify(",", car->race.pos);
-    csvString += SimpleParser::stringify(",", car->_enginerpm * 10);
-    csvString += SimpleParser::stringify(",", float(car->_speed_x * 3.6));
-    csvString += SimpleParser::stringify(",", float(car->_speed_y * 3.6));
-    csvString += SimpleParser::stringify(",", float(car->_speed_z * 3.6));
-    csvString += SimpleParser::stringify("", trackSensorOut, 19);
-    csvString += SimpleParser::stringify(",", dist_to_middle);
-    csvString += SimpleParser::stringify(",", wheelSpinVel, 4);
-    csvString += SimpleParser::stringify(",", car->_pos_Z - RtTrackHeightL(&(car->_trkPos)));
-    csvString += SimpleParser::stringify(",", focusSensorOut, 5); // ML
-
-    printf("%s\n", csvString);
 
     /**********************************************************************
      ****************** Building state string *****************************
