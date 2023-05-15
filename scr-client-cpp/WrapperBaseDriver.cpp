@@ -23,7 +23,7 @@ void writeCsvRow(CarState X, CarControl Y) {
     
     // 8 Car State Features
     //                                  "s_speed_x;     s_speed_y;     s_speed_z;     s_rpm;      s_gear;       s_angle;      s_z;      s_damage;
-    printf( "%f;%f;%f;%i;%i;%f;%f;%f\n", X.getSpeedX(), X.getSpeedY(), X.getSpeedZ(), X.getRpm(), X.getGear(),  X.getAngle(), X.getZ(), X.getDamage());
+    printf( "%f;%f;%f;%i;%i;%f;%f;%f", X.getSpeedX(), X.getSpeedY(), X.getSpeedZ(), X.getRpm(), X.getGear(),  X.getAngle(), X.getZ(), X.getDamage());
     //                                   -0.005887;     -0.027970;     0.000171;      942;        0;            0.000210;     0.345256; 0.000000
 
     // 6 Race Environment Features
