@@ -144,7 +144,7 @@ int main(int argc, char *argv[])
 
 	cout << "***********************************" << endl;
     cout << "s_speed_x;s_speed_y;s_speed_z;s_rpm;s_gear;s_angle;s_z;s_damage;";
-    cout << "s_track_position;s_race_position;s_distance_raced;s_distance_from_start;s_current_laptime;s_last_laptim";
+    cout << "s_track_position;s_race_position;s_distance_raced;s_distance_from_start;s_current_laptime;s_last_laptime";
     cout << "distance_from_start;current_laptime;last_laptime;";
     cout << "a_accelation;a_brake;a_gear;a_steer;a_clutch" << endl;
 	cout << "***********************************" << endl;
