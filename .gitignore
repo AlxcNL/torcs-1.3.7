@@ -37,7 +37,4 @@ logs/*.log
 scr-client-cpp/client
 src/libs/txml/gennmtab/gennmtab
 autom4te.cache/
-config.log
 scr-client-cpp/logs/
-aclocal.m4
-config.h.in
