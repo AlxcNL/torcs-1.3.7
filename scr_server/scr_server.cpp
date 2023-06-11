@@ -61,7 +61,7 @@ typedef struct sockaddr_in tSockAddrIn;
 #define UDP_ID "SCR"
 #define UDP_DEFAULT_TIMEOUT 10000
 #define UDP_MSGLEN 1000
-// #define __UDP_SERVER_VERBOSE__
+#define __UDP_SERVER_VERBOSE__
 /************************/
 
 static int UDP_TIMEOUT = UDP_DEFAULT_TIMEOUT;
@@ -70,8 +70,8 @@ static int UDP_TIMEOUT = UDP_DEFAULT_TIMEOUT;
 
 #define RACE_RESTART 1
 // #define __STEP_LIMIT__ 10000
-// #define __DISABLE_RESTART__
-// #define __PRINT_RACE_RESULTS__
+#define __DISABLE_RESTART__
+#define __PRINT_RACE_RESULTS__
 
 double __SENSORS_RANGE__;
 #define __FOCUS_RANGE__ 200
@@ -267,23 +267,24 @@ newrace(int index, tCarElt *car, tSituation *s)
             exit(1);
         }
 
-#ifdef __UDP_SERVER_VERBOSE__
-        // show the client's IP address
-        std::cout << "  from " << inet_ntoa(clientAddress[index].sin_addr);
+        #ifdef __UDP_SERVER_VERBOSE__
+            // show the client's IP address
+            std::cout << "  from " << inet_ntoa(clientAddress[index].sin_addr);
 
-        // show the client's port number.
-        std::cout << ":" << ntohs(clientAddress[index].sin_port) << "\n";
+            // show the client's port number.
+            std::cout << ":" << ntohs(clientAddress[index].sin_port) << "\n";
 
-        // Show the line
-        std::cout << "  Received: " << line << "\n";
-#endif
+            // Show the line
+            std::cout << "  Received: " << line << "\n";
+        #endif
 
         // compare received string with the ID
         if (strncmp(line, UDP_ID, 3) == 0)
         {
-#ifdef __UDP_SERVER_VERBOSE__
-            std::cout << "IDENTIFIED" << std::endl;
-#endif
+            #ifdef __UDP_SERVER_VERBOSE__
+                        std::cout << "IDENTIFIED" << std::endl;
+            #endif
+
             std::string initStr(line);
             if (SimpleParser::parse(initStr, std::string("init"), trackSensAngle[index], 19) == false)
             {
@@ -319,10 +320,13 @@ newrace(int index, tCarElt *car, tSituation *s)
     for (int i = 0; i < 19; ++i)
     {
         trackSens[index]->setSensor(i, trackSensAngle[index][i], __SENSORS_RANGE__);
-#ifdef __UDP_SERVER_VERBOSE__
-        std::cout << "Set Track Sensors " << i + 1 << " at angle " << trackSensAngle[index][i] << std::endl;
-#endif
+
+        #ifdef __UDP_SERVER_VERBOSE__
+            std::cout << "Set Track Sensors " << i + 1 << " at angle " << trackSensAngle[index][i] << std::endl;
+        #endif
+
     }
+
     // Initialization of opponents sensors
     oppSens[index] = new ObstacleSensors(36, curTrack, car, s, (int)__SENSORS_RANGE__);
 
@@ -336,11 +340,11 @@ drive(int index, tCarElt *car, tSituation *s)
 
     total_tics[index]++;
 
-#ifdef __PRINT_RACE_RESULTS__
-    bestLap[index] = car->_bestLapTime;
-    damages[index] = car->_dammage;
-    totalTime[index] = car->_timeBehindLeader;
-#endif
+    #ifdef __PRINT_RACE_RESULTS__
+        bestLap[index] = car->_bestLapTime;
+        damages[index] = car->_dammage;
+        totalTime[index] = car->_timeBehindLeader;
+    #endif
 
 #ifdef __DISABLE_RESTART__
     if (RESTARTING[index] == 1)
@@ -607,9 +611,9 @@ drive(int index, tCarElt *car, tSituation *s)
         }
         else
         {
-            // #ifdef __UDP_SERVER_VERBOSE__
-            std::cout << "Timeout for client answer\n";
-            // #endif
+            #ifdef __UDP_SERVER_VERBOSE__
+                std::cout << "Timeout for client answer\n";
+            #endif
 
             // If no new controls are availables uses old ones...
             car->_accelCmd = oldAccel[index];

@@ -13,7 +13,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-//#define __DEBUG_OPP_SENS__
+#define __DEBUG_OPP_SENS__
 
 
 #include "ObstacleSensors.h"
