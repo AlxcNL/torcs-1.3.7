@@ -1,1 +1,1 @@
-/home/roboy/torcs/torcs-1.3.7/src/libs/confscreens/simuconfig.h
+/home/jb/torcs/torcs-1.3.7/src/libs/confscreens/simuconfig.h

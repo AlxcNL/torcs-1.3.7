@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+
+*.log
+export/lib/libsolid.a
+autom4te.cache
+export/lib/libsolid.a
