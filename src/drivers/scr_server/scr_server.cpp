@@ -61,7 +61,7 @@ typedef struct sockaddr_in tSockAddrIn;
 #define UDP_ID "SCR"
 #define UDP_DEFAULT_TIMEOUT 10000
 #define UDP_MSGLEN 1000
-//#define __UDP_SERVER_VERBOSE__
+#define __UDP_SERVER_VERBOSE__
 /************************/
 
 static int UDP_TIMEOUT = UDP_DEFAULT_TIMEOUT;
@@ -598,9 +598,9 @@ if (RESTARTING[index]==0)
     }
     else
     {
-//#ifdef __UDP_SERVER_VERBOSE__
+#ifdef __UDP_SERVER_VERBOSE__
         std::cout << "Timeout for client answer\n";
-//#endif
+#endif
 
         // If no new controls are availables uses old ones...
         car->_accelCmd = oldAccel[index];
